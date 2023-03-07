@@ -25,6 +25,7 @@ const style = {
 function App() {
 	const [todos, setTodos] = useState([]);
 	const [input, setInput] = useState('');
+
 	//create todo
 	const createTodo = async (e) => {
 		e.preventDefault(e);
@@ -36,6 +37,7 @@ function App() {
 			text: input,
 			completed: false,
 		});
+		setInput('');
 	};
 
 	// Read todo from firebase
@@ -55,6 +57,7 @@ function App() {
 	const toggleComplete = async (todo) => {
 		await updateDoc(doc(db, 'todos', todo.id), { completed: !todo.completed });
 	};
+
 	//delete todo from firebase
 	const deleteTodo = async (id) => {
 		await deleteDoc(doc(db, 'todos', id));
